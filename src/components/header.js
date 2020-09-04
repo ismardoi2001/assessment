@@ -26,6 +26,8 @@ import Badge from '@material-ui/core/Badge';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -190,8 +192,8 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>User Settings</MenuItem>
+      <MenuItem onClick={handleMenuClose}>LOg Out</MenuItem>
     </Menu>
   );
 
@@ -247,9 +249,7 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className={classes.title} variant='h6' noWrap>
-              Material-UI
-            </Typography>
+
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -265,6 +265,11 @@ const Header = () => {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+              <IconButton color='inherit'>
+                <Badge color='secondary'>
+                  <FullscreenIcon />
+                </Badge>
+              </IconButton>
               <IconButton
                 aria-label='show 17 new notifications'
                 color='inherit'
@@ -324,7 +329,15 @@ const Header = () => {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {[
+            'Transaction',
+            'Cash Management',
+            'Settlement',
+            'Accounting',
+            'Reporting',
+            'Master Data',
+            'System Settings',
+          ].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -334,16 +347,6 @@ const Header = () => {
           ))}
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       <main
         className={clsx(classes.content, {
